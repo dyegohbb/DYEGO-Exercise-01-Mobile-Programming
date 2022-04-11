@@ -1,65 +1,26 @@
-import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
-import { Icon, Input, Button, Alert } from 'react-native-elements';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screens/Home";
+import RegisterScreen from "./screens/Register";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+export default function app() {
   return (
-    <View style={{ flex: 1, flexDirection: "collumn", backgroundColor: "#dce9e7", alignItems: "center", justifyContent: 'center', paddingBottom: 100 }}>
-      <View style={{ alignItems: "center", paddingTop: 50 }}>
-        <Icon
-          raised
-          size={60}
-          name='alien-outline'
-          type='material-community'
-          color='grey' />
-      </View>
-      <View style={{ height: 150, width: 300, paddingTop: 10 }}>
-        <Input placeholder="E-mail" />
-        <Input style={{ marginTop: 10 }} placeholder="Senha" />
-        <View style={{ flexDirection: 'row' }}>
-          <Button
-            title="Entrar"
-            buttonStyle={{
-              borderColor: '#f4f4f4',
-              backgroundColor: '#f4f4f4',
-              borderRadius: 3,
-            }}
-            containerStyle={{
-              width: 100,
-              marginHorizontal: 10,
-              marginVertical: 10,
-              marginLeft: 40,
-            }}
-            titleStyle={{ color: "grey" }}
-          />
-          <Button
-            title="Cadastrar"
-            buttonStyle={{
-              backgroundColor: '#f4f4f4',
-              borderRadius: 3,
-            }}
-            containerStyle={{
-              width: 100,
-              marginHorizontal: 10,
-              marginVertical: 10,
-            }}
-            titleStyle={{ color: "grey" }}
-          />
-        </View>
-      </View>
-      <View style={{ backgroundColor: "aqua", alignItems: "center" }}>
-
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-  label: {
-    marginRight: 10,
-  }
-});
