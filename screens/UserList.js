@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon, Input, Button } from "react-native-elements";
 
-function Login ({navigation}) {
+function UserList ({route, navigation}) {
+    const {nome}=route.params
     return (
       <View
         style={{
@@ -25,9 +26,11 @@ function Login ({navigation}) {
           />
         </View>
         <View style={{ height: 150, width: 300, paddingTop: 10 }}>
+          <Input placeholder="E-mail" />
+          <Input style={{ marginTop: 10 }} placeholder="Senha" secureTextEntry={true} />
           <View style={{ flexDirection: "row" }}>
             <Button
-              title="Sign in"
+              title="Entrar"
               buttonStyle={{
                 borderColor: "#f4f4f4",
                 backgroundColor: "#f4f4f4",
@@ -40,14 +43,9 @@ function Login ({navigation}) {
                 marginLeft: 40,
               }}
               titleStyle={{ color: "grey" }}
-              onPress={() => navigation.navigate('Login',
-                {
-                  error: false,
-                }
-              )}
             />
             <Button
-              title="Sign up"
+              title="Cadastrar"
               buttonStyle={{
                 backgroundColor: "#f4f4f4",
                 borderRadius: 3,
@@ -58,14 +56,14 @@ function Login ({navigation}) {
                 marginVertical: 10,
               }}
               titleStyle={{ color: "grey" }}
-              onPress={() => navigation.navigate('Register')}
+              onPress={ () => navigation.navigate('Register')}
             />
           </View>
         </View>
         <View style={{ backgroundColor: "aqua", alignItems: "center" }}></View>
       </View>
     );
-  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -77,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default UserList;

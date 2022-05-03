@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import { Icon, Input, Button } from "react-native-elements";
 
-function Login ({navigation}) {
+const users = [{login: 'dyego', pw: '123'}, {login: 'root', pw: 'root'}]
+
+function Login ({route, navigation}) {
+  const {error}=route.params;
+  const [login, setLogin] = useState('');
+  const [pw, setPw] = useState('');
+
     return (
       <View
         style={{
@@ -14,6 +20,9 @@ function Login ({navigation}) {
           paddingBottom: 100,
         }}
       >
+        <View style={!error ? styles.A : styles.B}>
+          <Text>ERRO DE LOGIN</Text>
+        </View>
         <View style={{ alignItems: "center", paddingTop: 50 }}>
           <Icon
             style={{}}
@@ -25,9 +34,11 @@ function Login ({navigation}) {
           />
         </View>
         <View style={{ height: 150, width: 300, paddingTop: 10 }}>
-          <View style={{ flexDirection: "row" }}>
+          <Input placeholder="E-mail" onChangeText={login => setLogin(login)} />
+          <Input style={{ marginTop: 10 }} placeholder="Senha" secureTextEntry={true} onChangeText={pw => setPw(pw)} />
+          <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 15 }}>
             <Button
-              title="Sign in"
+              title="Entrar"
               buttonStyle={{
                 borderColor: "#f4f4f4",
                 backgroundColor: "#f4f4f4",
@@ -35,30 +46,9 @@ function Login ({navigation}) {
               }}
               containerStyle={{
                 width: 100,
-                marginHorizontal: 10,
-                marginVertical: 10,
-                marginLeft: 40,
               }}
               titleStyle={{ color: "grey" }}
-              onPress={() => navigation.navigate('Login',
-                {
-                  error: false,
-                }
-              )}
-            />
-            <Button
-              title="Sign up"
-              buttonStyle={{
-                backgroundColor: "#f4f4f4",
-                borderRadius: 3,
-              }}
-              containerStyle={{
-                width: 100,
-                marginHorizontal: 10,
-                marginVertical: 10,
-              }}
-              titleStyle={{ color: "grey" }}
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => CheckPw(login, pw, navigation)}
             />
           </View>
         </View>
@@ -67,14 +57,24 @@ function Login ({navigation}) {
     );
   }
 
+
+function CheckPw(login, pw, navigation){
+  users.forEach(user => {
+    if(user.login == login && user.pw == pw){
+      navigation.navigate('UserList', {nome: 'Abc'})
+    }else{
+      navigation.navigate('Login', {error: true})
+    }
+  });
+}
+
 const styles = StyleSheet.create({
+  A: { display:"none" }, 
+  B:{ display:"flex" },
   container: {
     flex: 1,
     backgroundColor: "#000",
-  },
-  label: {
-    marginRight: 10,
-  },
+  }
 });
 
 export default Login;

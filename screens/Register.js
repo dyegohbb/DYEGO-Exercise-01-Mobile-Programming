@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon, Input, Button, Overlay } from "react-native-elements";
 
-export default class Home extends React.Component {
-  render() {
+function Register ({navigation}){
     return (
       <View
         style={{
@@ -44,6 +43,7 @@ export default class Home extends React.Component {
                 marginLeft: 40,
               }}
               titleStyle={{ color: "grey" }}
+              onPress={ () => navigation.navigate('UserList', {nome: "dyego"})}
             />
             <Button
               title="Cancelar"
@@ -57,7 +57,7 @@ export default class Home extends React.Component {
                 marginVertical: 10,
               }}
               titleStyle={{ color: "grey" }}
-              onPress={ () => this.props.navigation.navigate('Home')}
+              onPress={ () => navigation.navigate('Home')}
             />
           </View>
         </View>
@@ -65,7 +65,6 @@ export default class Home extends React.Component {
       </View>
     );
   }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -76,3 +75,5 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
+
+export default Register;
