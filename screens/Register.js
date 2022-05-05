@@ -25,7 +25,7 @@ function Register ({navigation}){
           />
         </View>
         <View style={{ height: 150, width: 300, paddingTop: 10 }}>
-          <Input placeholder="Nome" />
+          <Input placeholder="Name" />
           <Input style={{ marginTop: 10 }} placeholder="E-mail" />
           <Input style={{ marginTop: 10 }} placeholder="Senha" secureTextEntry={true}/>
           <View style={{ flexDirection: "row" }}>
@@ -43,7 +43,7 @@ function Register ({navigation}){
                 marginLeft: 40,
               }}
               titleStyle={{ color: "grey" }}
-              onPress={ () => navigation.navigate('UserList', {nome: "dyego"})}
+              onPress={ () => navigation.navigate('UserList', {name: "dyego"})}
             />
             <Button
               title="Cancelar"

@@ -61,7 +61,7 @@ function Login ({route, navigation}) {
 function CheckPw(login, pw, navigation){
   users.forEach(user => {
     if(user.login == login && user.pw == pw){
-      navigation.navigate('UserList', {nome: 'Abc'})
+      navigation.navigate('UserList', {name: 'Abc'})
     }else{
       navigation.navigate('Login', {error: true})
     }
