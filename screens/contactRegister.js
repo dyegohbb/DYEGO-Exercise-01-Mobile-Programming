@@ -43,7 +43,7 @@ function ContactRegister({ route, navigation }) {
         {editing != false ? (<Input placeholder="Image (URL)" value={editing.imgUrl}/>) : (<Input placeholder="Image (URL)"/>)}
         <View style={{ flexDirection: "row" }}>
           <Button
-            title="Register User"
+            title="Register"
             buttonStyle={{
               borderColor: "#f4f4f4",
               backgroundColor: "#f4f4f4",
@@ -56,7 +56,7 @@ function ContactRegister({ route, navigation }) {
               marginLeft: 40,
             }}
             titleStyle={{ color: "grey" }}
-            onPress={() => navigation.navigate("UserList")}
+            onPress={() => navigation.navigate('UserList')}
           />
           <Button
             title="Cancel"
@@ -70,7 +70,7 @@ function ContactRegister({ route, navigation }) {
               marginVertical: 10,
             }}
             titleStyle={{ color: "grey" }}
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate('UserList')}
           />
         </View>
       </View>

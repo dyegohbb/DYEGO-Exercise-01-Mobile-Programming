@@ -30,7 +30,7 @@ function Register ({navigation}){
           <Input style={{ marginTop: 10 }} placeholder="Senha" secureTextEntry={true}/>
           <View style={{ flexDirection: "row" }}>
             <Button
-              title="Cadastrar"
+              title="Register"
               buttonStyle={{
                 borderColor: "#f4f4f4",
                 backgroundColor: "#f4f4f4",
@@ -46,7 +46,7 @@ function Register ({navigation}){
               onPress={ () => navigation.navigate('UserList', {name: "dyego"})}
             />
             <Button
-              title="Cancelar"
+              title="Cancel"
               buttonStyle={{
                 backgroundColor: "#f4f4f4",
                 borderRadius: 3,

@@ -55,6 +55,13 @@ function UserList ({route, navigation}) {
           type='font-awesome'
           color='black'
           onPress={() => navigation.navigate('ContactRegister', {editing: false})} />
+          <Icon
+          style={{marginRight: 10}}
+          size={30}
+          name='home'
+          type='font-awesome'
+          color='black'
+          onPress={() => navigation.navigate('Home')} />
       </View>
     {contatos.map((l,i) => (
       <ListItem
