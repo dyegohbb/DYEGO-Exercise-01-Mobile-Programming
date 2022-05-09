@@ -1,18 +1,24 @@
-import * as React from "react";
+import React, {useEffect, useState} from "react";
 import { ListItem, Avatar, Icon} from "react-native-elements";
 import { TouchableHighlight, Text, View, Dimensions } from "react-native";
+import axios from "axios";
 
-function getPhone(){
-  const min = 1000
-  const max = 9999
-  var first = min + Math.random() * (max - min);
-  var last = min + Math.random() * (max - min);
-  phone = "(81) 9" + first.toFixed() + "-" + last.toFixed()
+ function getRandomPicture(){
+  const min = 1
+  const max = 60
+  var number = min + Math.random() * (max - min)
 
-  return phone
+  const min2 = 1
+  const max2 = 2
+  var number2 = min2 + Math.random() * (max2 - min2)
+  if (number2.toFixed() == 1){
+    return 'https://randomuser.me/api/portraits/women/'+number.toFixed()+'.jpg'
+  }else{
+    return 'https://randomuser.me/api/portraits/men/'+number.toFixed()+'.jpg'
+  }
 }
-const width = Dimensions.get('window').width;
 
+/*
 var phone = getPhone();
 const contatos = [
   { name: "Dyego H.", email: "dyegohbb@gmail.com", phone: getPhone(), imgUrl:'https://randomuser.me/api/portraits/men/30.jpg'},
@@ -43,9 +49,25 @@ const contatos = [
   { name: "Lucas H.", email: "Lucas@gmail.com", phone: getPhone(), imgUrl:'https://randomuser.me/api/portraits/men/55.jpg'},
   { name: "Davison V.", email: "Davison@gmail.com", phone: getPhone(), imgUrl:'https://randomuser.me/api/portraits/men/56.jpg'},
   { name: "Maiara F.", email: "Maiara@gmail.com", phone: getPhone(), imgUrl:'https://randomuser.me/api/portraits/women/57.jpg'},
-];
+]; */
+
+var contatos = [];
+async function fetchClientes() {
+  contatos = await axios
+    .get("http://professornilson.com/testeservico/clientes")
+
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+fetchClientes();
 
 function UserList ({route, navigation}) {
+  var clientes = contatos.data;
   return (
     <View style={{width: 1000, alignSelf:"center"}}>
       <View style={{flexDirection: "row-reverse"}}>
@@ -63,7 +85,7 @@ function UserList ({route, navigation}) {
           color='black'
           onPress={() => navigation.navigate('Home')} />
       </View>
-    {contatos.map((l,i) => (
+    {clientes.map((l,i) => (
       <ListItem
       Component={TouchableHighlight}
       containerStyle={{}}
@@ -75,18 +97,18 @@ function UserList ({route, navigation}) {
           size={50}
           rounded
           source={{
-            uri: l.imgUrl,
+            uri: getRandomPicture(),
           }}
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text>{l.name}</Text>
+            <Text>{l.nome}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>
-            <Text>{l.phone}</Text>
+            <Text>{l.telefone}</Text>
           </ListItem.Subtitle>
           <ListItem.Subtitle>
-            <Text>{l.email.toLowerCase()}</Text>
+            <Text>{l.email}</Text>
           </ListItem.Subtitle>
         </ListItem.Content>
     </ListItem>

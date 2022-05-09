@@ -37,10 +37,9 @@ function ContactRegister({ route, navigation }) {
         )}
       </View>
       <View style={{ height: 150, width: 300, paddingTop: 10 }}>
-        {editing != false ? (<Input placeholder="Name" value={editing.name}/>) : (<Input placeholder="Name"/>)}
-        {editing != false ? (<Input placeholder="E-mail" value={editing.email}/>) : (<Input placeholder="E-mail"/>)}
-        {editing != false ? (<Input placeholder="Celular" value={editing.phone}/>) : (<Input placeholder="Phone"/>)}
-        {editing != false ? (<Input placeholder="Image (URL)" value={editing.imgUrl}/>) : (<Input placeholder="Image (URL)"/>)}
+        {editing != false ? (<Input placeholder="Name" value={editing.nome || undefined}/>) : (<Input placeholder="Name"/>)}
+        {editing != false ? (<Input placeholder="E-mail" value={editing.email || undefined}/>) : (<Input placeholder="E-mail"/>)}
+        {editing != false ? (<Input placeholder="Celular" value={editing.telefone || undefined}/>) : (<Input placeholder="Phone"/>)}
         <View style={{ flexDirection: "row" }}>
           <Button
             title="Register"
